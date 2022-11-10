@@ -1,15 +1,13 @@
 fn main() {
-    let func = count_positives_sum_negatives(vec![]);
-
+    let func = descending_order(123456789);
     println!("{:?}", func);
 }
-fn count_positives_sum_negatives(input: Vec<i32>) -> Vec<i32> {
-    if input.len() == 0 {
-       return  input
-    }
-   let pos =  *input.iter().max().unwrap();
-    let neg =  input.into_iter().filter(|&a| a < 0).reduce(|x, y| x + y).unwrap();
+fn descending_order(x: u64) -> u64 {
+   let mut n = x.to_string().chars().collect::<Vec<char>>();
+    n.sort_by(|x, y| y.cmp(x));
 
-    vec![pos, neg]
+    String::from_iter(n).parse::<u64>().unwrap()
+
+
 
 }
