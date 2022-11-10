@@ -1,15 +1,10 @@
 fn main() {
-    let func = count_positives_sum_negatives(vec![]);
+    let func = high_and_low("8 3 -5 42 -1 0 0 -9 4 7 4 -4");
 
     println!("{:?}", func);
 }
-fn count_positives_sum_negatives(input: Vec<i32>) -> Vec<i32> {
-    if input.len() == 0 {
-       return  input
-    }
-   let pos =  *input.iter().max().unwrap();
-    let neg =  input.into_iter().filter(|&a| a < 0).reduce(|x, y| x + y).unwrap();
-
-    vec![pos, neg]
-
+fn high_and_low(numbers: &str) -> String {
+    let mut st: Vec<i32> = numbers.split(" ").map(|n| n.parse::<i32>().unwrap()).collect();
+    st.sort();
+    format!("{} {}", st[st.len() - 1], st[0])
 }
