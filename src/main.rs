@@ -1,13 +1,16 @@
+
+
 fn main() {
-    let func = descending_order(123456789);
+    let func = maskify("4556364607935616");
     println!("{:?}", func);
 }
-fn descending_order(x: u64) -> u64 {
-   let mut n = x.to_string().chars().collect::<Vec<char>>();
-    n.sort_by(|x, y| y.cmp(x));
-
-    String::from_iter(n).parse::<u64>().unwrap()
 
 
+fn maskify(cc: &str) -> String {
+
+    if cc.len() < 5 {
+       return  cc.to_string()
+    }
+    "#".repeat(cc.len()-4).to_string() + &cc[cc.len() -4..]
 
 }
