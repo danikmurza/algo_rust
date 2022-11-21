@@ -1,15 +1,36 @@
+use std::ops::Index;
+
 fn main() {
-    let func = find_outlier(&[160, 3, 1719, 19, 11, 13, -21]);
+    let func = high("man i need a taxi up to ubud");
     println!("{:?}", func);
 }
 
 
-fn find_outlier(values: &[i32]) -> &i32 {
-    let a = values.into_iter().filter(|&&x| x % 2 == 0).collect::<Vec<&i32>>();
-    let bb = values.into_iter().filter(|&&x| x % 2 == 1).collect::<Vec<&i32>>();
-    return if a.len() > bb.len() {
-        &bb[0]
-    } else {
-        a[0]
-    };
+fn high(input: &str) -> &str {
+    let dd: Vec<&str> = input.split(" ").collect();
+    let mut n: Vec<i32> = Vec::new();
+    for d in dd {
+        let mut sum = 0;
+        for i in d.chars() {
+            sum += i as i32;
+        }
+        n.push(sum)
+    }
+    let mut ma = n[0];
+    for i in &n {
+        if ma < *i {
+            ma = *i;
+        }
+    }
+
+    // for i in n.len() {
+    //     println!("{}", n[i]);
+    // }
+
+    // let index: i32 = n.index(ma);
+
+    // println!("{:?}", index);
+    println!("{:?}", n);
+
+    ""
 }
