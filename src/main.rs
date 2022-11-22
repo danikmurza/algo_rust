@@ -1,36 +1,18 @@
-use std::ops::Index;
-
 fn main() {
-    let func = high("man i need a taxi up to ubud");
+    let func = wave("hello");
     println!("{:?}", func);
 }
 
 
-fn high(input: &str) -> &str {
-    let dd: Vec<&str> = input.split(" ").collect();
-    let mut n: Vec<i32> = Vec::new();
-    for d in dd {
-        let mut sum = 0;
-        for i in d.chars() {
-            sum += i as i32;
-        }
-        n.push(sum)
+fn wave(s: &str) -> Vec<String> {
+    let mut ve: Vec<String> = Vec::new();
+    let f = s[..1].to_uppercase();
+    let ff = s[1..s.len()].to_string();
+    let fff = format!("{}{}", f, ff);
+    ve.push(fff);
+    for i in 1..s.len() {
+        let d = format!("{}{}{}", &s[0..i], &s[i..i + 1].to_uppercase(), &s[i + 1..s.len()]);
+        ve.push(d);
     }
-    let mut ma = n[0];
-    for i in &n {
-        if ma < *i {
-            ma = *i;
-        }
-    }
-
-    // for i in n.len() {
-    //     println!("{}", n[i]);
-    // }
-
-    // let index: i32 = n.index(ma);
-
-    // println!("{:?}", index);
-    println!("{:?}", n);
-
-    ""
+    ve
 }
