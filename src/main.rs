@@ -1,18 +1,18 @@
 fn main() {
-    let func = wave("hello");
+    let func = camel_case("test case");
     println!("{:?}", func);
 }
 
 
-fn wave(s: &str) -> Vec<String> {
-    let mut ve: Vec<String> = Vec::new();
-    let f = s[..1].to_uppercase();
-    let ff = s[1..s.len()].to_string();
-    let fff = format!("{}{}", f, ff);
-    ve.push(fff);
-    for i in 1..s.len() {
-        let d = format!("{}{}{}", &s[0..i], &s[i..i + 1].to_uppercase(), &s[i + 1..s.len()]);
-        ve.push(d);
-    }
-    ve
+fn camel_case(str: &str) -> String {
+
+    let c : Vec<String> = str
+        .split_whitespace()
+        .map(|s| format!("{}{}", s[0..1].to_string().to_uppercase(), s[1..s.len()].to_string()) )
+        .map(String::from)
+        .collect();
+
+    println!("{:?}", c);
+
+    c.join("")
 }
