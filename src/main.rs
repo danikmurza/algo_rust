@@ -1,18 +1,23 @@
+
+
 fn main() {
-    let func = camel_case("test case");
+    let func = num_jewels_in_stones("aA".to_string(), "aAAbbbb".to_string());
     println!("{:?}", func);
 }
 
+fn num_jewels_in_stones(jewels: String, stones: String) -> i32 {
 
-fn camel_case(str: &str) -> String {
+    let j: Vec<char> = jewels.chars().collect::<Vec<char>>();
+    let s: Vec<char> = stones.chars().collect::<Vec<char>>();
 
-    let c : Vec<String> = str
-        .split_whitespace()
-        .map(|s| format!("{}{}", s[0..1].to_string().to_uppercase(), s[1..s.len()].to_string()) )
-        .map(String::from)
-        .collect();
-
-    println!("{:?}", c);
-
-    c.join("")
+    let mut count  = 0;
+    for i in 0..s.len() {
+        for k in 0..j.len() {
+            if s[i] == j[k] {
+                count = count +1;
+            }
+        }
+    }
+    count
 }
+
