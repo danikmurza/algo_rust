@@ -1,19 +1,15 @@
 
 
 fn main() {
-
-    let aa: Vec<String> = vec!["alice and bob love leetcode".to_string(),"i think so too".to_string(),"this is great thanks very much".to_string()];
-    let func = most_words_found(aa);
-    println!("{:?}", func);
+    sort_sentence("is2 sentence4 This1 a3".to_string());
 }
 
-fn most_words_found(sentences: Vec<String>) -> i32 {
-
-
-
-    let mut a = sentences.iter().map(|a| a.split_whitespace().count() as i32).collect::<Vec<i32>>();
-    a.sort();
-    a[a.len()-1]
-
+fn sort_sentence(s: String) -> String {
+    let mut result = vec![""; s.split(" ").count()];
+    for w_n in s.split(" ") {
+        let (word, number) = w_n.split_at(w_n.len() - 1);
+        result[number.parse::<usize>().unwrap() - 1] = word;
+    }
+    result.join(" ")
 }
 
